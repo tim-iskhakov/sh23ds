@@ -369,7 +369,8 @@ Ordered by weight. Each line names where the work starts.
   (0x598700). The ending programs' page 0x2b and the page-0 sets in their results are not ported. The
   0.7 scene duck is from SOUND.md's formula (the function that applies it, 0x56e3b0, is encrypted).
 - Movies (`movie.c`): A or START always skip, where the PC has its own skip rules (0x43ded0) and treats
-  `gero` apart; no subtitles over movies.
+  `gero` apart. Subtitles over story movies are drawn (`movsubs.c`, `MOVIES.md`); the title's Movie
+  Menu has none, as the PC's.
 - The hospital elevator's radio quiz plays as a voice track over the game view; the PC also turns the
   0x4a43 elevator hum down to 0.7 meanwhile (0x588e60 case 10).
 - Cutscenes (`demo.c`): scene light gains are a guess (colour x 0.5 x brightness) and scene lights don't
