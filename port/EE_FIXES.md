@@ -106,7 +106,7 @@ coordinates.
 | FixFMVSpeed | FMVPatches.cpp | already covered | `movie.c` is clocked by the audio |
 | MainMenuInstantLoadOptions, DisableLoadingPressReturnMessages | MainMenu.cpp, dllmain.cpp | already covered | The title lists every entry at once; no loading screens |
 | RestoreBrightnessSelector | | already covered | Pause menu and D-pad, levels 1..7 |
-| FmvSubtitlesSyncFix, FmvSubtitlesNoiseFix | FmvSubtitles.cpp | left out | The port draws no movie subtitles (if added, time them in the movie's 29.97 fps frames) |
+| FmvSubtitlesSyncFix, FmvSubtitlesNoiseFix | FmvSubtitles.cpp | ported (timing); noise left out | `movsubs.c` / `main.c` `movie_hook_overlay`: the PC's frame tables at the movie's 29.97 fps frames, messages of the loaded stage (`MOVIES.md`). EE's noise under the subtitle bar is not applied (the port has no separate FMV subtitle layer to noise) |
 | FixMemoFading, MemoScreenFix | MemoFix.cpp | left out | The PC fades only the bottom layer of a memo (0x498cbd). The port draws the memo stills and overlays now (`prog_overlay.c`), but how its memo screen fades has not been checked against this |
 | FixElevatorCursorColor | ElevatorCursorColorFix.cpp | already covered | The hotel employee elevator's buttons are picked in a text panel (`prog_hotel.c` `s41_elevator`), so there is no PC cursor sprite whose colour could go wrong |
 | FixDrawingTextLine | d3d8 wrapper | not applicable | Thickens a 1-pixel line in the hospital diary at high PC resolutions; the port shows memo text, not the PC page |
@@ -146,7 +146,7 @@ coordinates.
 | FlashlightReflection | Patches/FlashlightReflection.cpp | left out | Needs EE's reflection assets and a reflection pass |
 | PS2StyleNoiseFilter | PS2NoiseFilter.cpp | ported | `noise.c` `noise_set`: with the grain style on PS2 (the default; `optmenu.c` "ps2noise", Noise Effect's PS2 value) the grey byte is divided by 7.4, 0x22 replaces 0xff past the ramp's knee and the alpha base is 0x1d7, as EE patches 0x47cb8a, 0x47cbaf and 0x47834d |
 | IncreaseNoiseEffectRes | PS2NoiseFilter.cpp | already covered | The port's noise texture is drawn one texel per pixel over the 400 x 240 screen |
-| FmvSubtitlesNoiseFix | FmvSubtitles.cpp | left out | The port draws no movie subtitles |
+| FmvSubtitlesNoiseFix | FmvSubtitles.cpp | left out | Movie subtitles are drawn (`movsubs.c`); EE's noise under the subtitle bar is not |
 | JamesTextureFix | Patches/JamesTexture.cpp | left out | Needs EE's replacement jacket texture 9980 |
 | MothDrawOrderFix | Patches/MothDrawOrder.cpp | already covered | The PC sorts the moths into its translucent depth list with a wrong index; the port draws the final boss's moths as opaque models in its own pass (`enemy.c` `moths_draw`) |
 | UseBestGraphics | (dllmain) | already covered | The port has no graphics options; everything it draws is always on |
@@ -228,7 +228,7 @@ The before/after pictures were kept in a test workspace that has since been remo
 
 The options still marked "left out" wait on one of these: features the PC renderer has and the port
 does not (water, specular and environment maps, blur, bloom and motion blur, rain and smoke, 3D trees,
-event lights outside cutscenes, map-object and cutscene shadows, movie subtitles), PC stage code that
+event lights outside cutscenes, map-object and cutscene shadows), PC stage code that
 is not ported (the scenes' fog callbacks, the Leave ending's data, the prisoner footsteps, the in-water
 walk speed, the labyrinth pistons), fixes not yet applied to code that now exists (the rowboat fixes,
 the memo fade), or EE's own assets. STATUS.md lists the same gaps in order of weight.
