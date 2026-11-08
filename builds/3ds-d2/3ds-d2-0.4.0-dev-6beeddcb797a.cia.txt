@@ -1,0 +1,8 @@
+cia: 3ds-d2-0.4.0-dev-6beeddcb797a.cia
+version: 0.4.0-dev (title version 0.4.0)
+mode: sdcard
+art: drawn (SMDH flags visible,allow3d,recordusage)
+size: 2700224
+sha256: ed179d1c0c50f87e9de86d8e6e49bc50ce03df8e2a4fc69a4ff63233174e5748
+title_id: 000400000D2D3D00
+memory: New 3DS extended mode (124 MiB), 804 MHz, L2 cache
